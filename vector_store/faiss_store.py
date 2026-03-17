@@ -27,7 +27,12 @@ class FaissStore:
         vectors = np.array([c.embedding for c in chunks], dtype='float32')
         self.index.add(vectors)
 
-        self.metadata.extend([c.metadata for c in chunks])
+        self.metadata.extend([
+            {
+            "text": c.text,
+            "metadata": c.metadata
+            } for c in chunks
+        ])
 
     def save(self):
         """
@@ -60,6 +65,7 @@ class FaissStore:
             if idx < len(self.metadata):
                 results.append({
                     "distance": float(dist),
-                    "metadata": self.metadata[idx]
+                    "text": self.metadata[idx]["text"],
+                    "metadata": self.metadata[idx]["metadata"]
                 })
         return results

@@ -24,23 +24,23 @@ def build_chunk_text(unit: CodeUnit) -> str:
     docstring_text = unit.docstring if unit.docstring else "None"
 
     text = f"""
-Repository: {unit.repo}
+        Repository: {unit.repo}
 
-File: {unit.file}
+        File: {unit.file}
 
-Type: {unit.type}
+        Type: {unit.type}
 
-Name: {unit.name}
+        Name: {unit.name}
 
-Imports:
-{imports_text}
+        Imports:
+        {imports_text}
 
-Docstring:
-{docstring_text}
+        Docstring:
+        {docstring_text}
 
-Code:
-{unit.code}
-"""
+        Code:
+        {unit.code}
+        """
 
     return text.strip()
 
